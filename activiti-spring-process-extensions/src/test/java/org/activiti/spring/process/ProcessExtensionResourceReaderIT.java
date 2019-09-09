@@ -22,7 +22,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.activiti.engine.RepositoryService;
 import org.activiti.spring.process.conf.ProcessExtensionsAutoConfiguration;
-import org.activiti.spring.process.conf.ProcessExtensionsConfiguratorAutoConfiguration;
 import org.activiti.spring.process.model.ProcessExtensionModel;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +40,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ProcessExtensionResourceReaderIT {
 
     @Configuration
-    @Import({ProcessExtensionsAutoConfiguration.class, ProcessExtensionsConfiguratorAutoConfiguration.class})
+    @Import({ProcessExtensionsAutoConfiguration.class})
     static class ContextConfiguration {
 
         @Bean

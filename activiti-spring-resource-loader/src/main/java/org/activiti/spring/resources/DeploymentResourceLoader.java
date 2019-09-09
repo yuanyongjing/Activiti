@@ -32,6 +32,10 @@ public class DeploymentResourceLoader<T> {
 
     private Map<String, List<T>> loadedResources = new HashMap<>();
 
+    public DeploymentResourceLoader(RepositoryService repositoryService) {
+        this.repositoryService = repositoryService;
+    }
+
     public List<T> loadResourcesForDeployment(String deploymentId, ResourceReader<T> resourceLoaderDescriptor) {
         List<T> resources = loadedResources.get(deploymentId);
         if (resources != null) {
@@ -47,8 +51,8 @@ public class DeploymentResourceLoader<T> {
                     .collect(Collectors.toList());
 
             resources = loadResources(deploymentId,
-                    resourceLoaderDescriptor,
-                    selectedResources);
+                          resourceLoaderDescriptor,
+                          selectedResources);
         } else {
             resources = new ArrayList<>();
         }
@@ -62,7 +66,7 @@ public class DeploymentResourceLoader<T> {
         List<T> resources = new ArrayList<>();
         for (String name : selectedResources) {
             try (InputStream resourceAsStream = repositoryService.getResourceAsStream(deploymentId,
-                    name)) {
+                                                                                      name)) {
                 T resource = resourceReader.read(resourceAsStream);
                 if (resource != null) {
                     resources.add(resource);
@@ -72,9 +76,5 @@ public class DeploymentResourceLoader<T> {
             }
         }
         return resources;
-    }
-
-    public void setRepositoryService(RepositoryService repositoryService) {
-        this.repositoryService = repositoryService;
     }
 }
