@@ -59,6 +59,8 @@ public class ProcessVariablesInitiatorIT {
     @MockBean
     private ProcessExtensionService processExtensionService;
 
+    @MockBean
+    private RepositoryService repositoryService;
 
     @Configuration
     @Import({ProcessExtensionsAutoConfiguration.class, ProcessExtensionsConfiguratorAutoConfiguration.class})
@@ -69,8 +71,6 @@ public class ProcessVariablesInitiatorIT {
             return OBJECT_MAPPER;
         }
 
-        @MockBean
-        protected RepositoryService repositoryService;
 
 
     }
@@ -98,9 +98,9 @@ public class ProcessVariablesInitiatorIT {
             //then
             assertThat(variables)
                     .containsEntry("name",
-                            "Nobody")
+                                   "Nobody")
                     .containsEntry("positionInTheQueue",
-                            10)
+                                   10)
                     .doesNotContainKeys("age"); // age has no default value, so it won't be created
         }
     }
