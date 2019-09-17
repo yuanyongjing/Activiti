@@ -51,7 +51,7 @@ public class ProcessVariablesInitiatorIT {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
-                    false);
+                       false);
 
     @Autowired
     private ProcessVariablesInitiator processVariablesInitiator;
@@ -59,8 +59,6 @@ public class ProcessVariablesInitiatorIT {
     @MockBean
     private ProcessExtensionService processExtensionService;
 
-    @MockBean
-    private RepositoryService repositoryService;
 
     @Configuration
     @Import({ProcessExtensionsAutoConfiguration.class, ProcessExtensionsConfiguratorAutoConfiguration.class})
@@ -95,14 +93,14 @@ public class ProcessVariablesInitiatorIT {
 
             //when
             Map<String, Object> variables = processVariablesInitiator.calculateVariablesFromExtensionFile(processDefinition,
-                                                                                                          null);
+                    null);
 
             //then
             assertThat(variables)
                     .containsEntry("name",
-                                   "Nobody")
+                            "Nobody")
                     .containsEntry("positionInTheQueue",
-                                   10)
+                            10)
                     .doesNotContainKeys("age"); // age has no default value, so it won't be created
         }
     }
