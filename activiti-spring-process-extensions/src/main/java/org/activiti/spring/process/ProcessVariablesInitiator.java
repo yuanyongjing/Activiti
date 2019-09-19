@@ -33,7 +33,7 @@ import org.activiti.spring.process.variable.VariableValidationService;
 
 public class ProcessVariablesInitiator extends ProcessInstanceHelper {
 
-    private final ProcessExtensionService processExtensionService;
+    private ProcessExtensionService processExtensionService;
 
     private final VariableParsingService variableParsingService;
 
@@ -43,9 +43,11 @@ public class ProcessVariablesInitiator extends ProcessInstanceHelper {
                                      VariableParsingService variableParsingService,
                                      VariableValidationService variableValidationService) {
         this.processExtensionService = processExtensionService;
+
         this.variableParsingService = variableParsingService;
         this.variableValidationService = variableValidationService;
     }
+
 
     public Map<String, Object> calculateVariablesFromExtensionFile(ProcessDefinition processDefinition,
                                                                    Map<String, Object> variables) {
