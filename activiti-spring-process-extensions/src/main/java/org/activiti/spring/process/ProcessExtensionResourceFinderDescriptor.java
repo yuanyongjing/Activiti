@@ -29,15 +29,13 @@ public class ProcessExtensionResourceFinderDescriptor implements ResourceFinderD
     private List<String> locationSuffixes;
 
     public ProcessExtensionResourceFinderDescriptor(boolean checkResources,
-                                          String locationPrefix,
-                                          String locationSuffix) {
+                                                    String locationPrefix,
+                                                    String locationSuffix) {
 
         this.checkResources = checkResources;
         this.locationPrefix = locationPrefix;
         locationSuffixes = new ArrayList<>();
-        if (locationSuffix != null) {
-            locationSuffixes.add(locationSuffix);
-        }
+        locationSuffixes.add(locationSuffix);
     }
 
     @Override

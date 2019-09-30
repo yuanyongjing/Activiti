@@ -51,7 +51,7 @@ public class ProcessVariablesInitiatorIT {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
-                       false);
+                    false);
 
     @Autowired
     private ProcessVariablesInitiator processVariablesInitiator;
